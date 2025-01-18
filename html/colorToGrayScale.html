@@ -1,0 +1,209 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>colorToGrayScale</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2025-01-16"><meta name="DC.source" content="colorToGrayScale.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% Clear workspace and command window</span>
+clc;
+close <span class="string">all</span>;
+clear <span class="string">all</span>;
+
+<span class="comment">% Read the image</span>
+img = imread(<span class="string">'flower.jpg'</span>); <span class="comment">% Replace 'image.jpg' with the path to your image file</span>
+
+figure;
+subplot(2,4,1);
+imshow(img);
+title(<span class="string">'Original Image'</span>);
+
+subplot(2,4,5);
+imshow(img);
+title(<span class="string">'Original Image'</span>);
+
+img_red = img(:,:,:);
+img_green = img(:,:,:);
+img_blue = img( :, : ,:);
+
+img_red_gray = img(:,:,1);
+img_red (:,:,2) = 0;
+img_red (:,:,3) = 0;
+
+subplot(2,4,2);
+imshow(img_red);
+title(<span class="string">'Only Red'</span>);
+img_green_gray = img_green(:,:,2);
+subplot(2,4,6);
+imshow(img_red_gray);
+title(<span class="string">'Red Gray'</span>);
+
+img_green (:,:,1) = 0;
+img_green (:,:,3) = 0;
+subplot(2,4,3);
+imshow(img_green);
+title(<span class="string">'Only Green'</span>);
+
+subplot(2,4,7);
+imshow(img_green_gray);
+title(<span class="string">'Green Gray'</span>);
+
+
+img_blue_gray = img(:,:,3);
+
+img_blue (:,:,1) = 0;
+img_blue (:,:,2) = 0;
+subplot(2,4,4);
+imshow(img_blue);
+title(<span class="string">'Only Blue'</span>);
+
+subplot(2,4,8);
+imshow(img_blue_gray);
+title(<span class="string">'Blue Gray'</span>);
+
+<span class="comment">% Convert the image to grayscale</span>
+grayImg = rgb2gray(img);
+
+<span class="comment">% Display the original and grayscale images</span>
+figure;
+subplot(1, 2, 1);
+imshow(img);
+title(<span class="string">'Original Image'</span>);
+
+subplot(1, 2, 2);
+imshow(grayImg);
+title(<span class="string">'Grayscale Image'</span>);
+</pre><img vspace="5" hspace="5" src="colorToGrayScale_01.png" alt=""> <img vspace="5" hspace="5" src="colorToGrayScale_02.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Clear workspace and command window
+clc;
+close all;
+clear all;
+
+% Read the image
+img = imread('flower.jpg'); % Replace 'image.jpg' with the path to your image file
+
+figure;
+subplot(2,4,1);
+imshow(img);
+title('Original Image');
+
+subplot(2,4,5);
+imshow(img);
+title('Original Image');
+
+img_red = img(:,:,:);
+img_green = img(:,:,:);
+img_blue = img( :, : ,:);
+
+img_red_gray = img(:,:,1);
+img_red (:,:,2) = 0;
+img_red (:,:,3) = 0;
+
+subplot(2,4,2);
+imshow(img_red);
+title('Only Red');
+img_green_gray = img_green(:,:,2);
+subplot(2,4,6);
+imshow(img_red_gray);
+title('Red Gray');
+
+img_green (:,:,1) = 0;
+img_green (:,:,3) = 0;
+subplot(2,4,3);
+imshow(img_green);
+title('Only Green');
+
+subplot(2,4,7);
+imshow(img_green_gray);
+title('Green Gray');
+
+
+img_blue_gray = img(:,:,3);
+
+img_blue (:,:,1) = 0;
+img_blue (:,:,2) = 0;
+subplot(2,4,4);
+imshow(img_blue);
+title('Only Blue');
+
+subplot(2,4,8);
+imshow(img_blue_gray);
+title('Blue Gray');
+
+% Convert the image to grayscale
+grayImg = rgb2gray(img);
+
+% Display the original and grayscale images
+figure;
+subplot(1, 2, 1);
+imshow(img);
+title('Original Image');
+
+subplot(1, 2, 2);
+imshow(grayImg);
+title('Grayscale Image');
+##### SOURCE END #####
+--></body></html>
