@@ -3,7 +3,7 @@ clc
 close all;
 clear all;
 % Read the grayscale image
-image = imread('Lenna_test_image.png'); % Replace 'input_image.png' with your image file name
+image = imread('poseinmumbai.jpg'); % Replace 'input_image.png' with your image file name
 if size(image, 3) == 3
     image = rgb2gray(image); % Convert to grayscale if the image is RGB
 end
@@ -35,6 +35,6 @@ end
 
 % Optional: Save individual bit planes as images
 for bit = 1:8
-    filename = sprintf('bit_plane_%d.png', bit);
+    filename = sprintf('pose_plane_%d.png', bit);
     imwrite(logical(bit_planes{bit}), filename);
 end
